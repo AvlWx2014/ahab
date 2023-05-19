@@ -3,3 +3,4 @@ from .null import NullSolver
 from .pdm import PdmSolver
 from .pipenv import PipenvSolver
 from .poetry import PoetrySolver
+from .pyproject import PyprojectSolver
