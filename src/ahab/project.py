@@ -82,7 +82,8 @@ class Project:
             and solvers[SpecificationType.REQUIREMENTS]
         ):
             raise SolutionImpossible(
-                f"Dependency management strategy is ambiguous for {self.name}. Multiple possible tools found."
+                f"Dependency management strategy is ambiguous for {self.name}. "
+                "Multiple possible tools found."
             )
 
         # note on match:

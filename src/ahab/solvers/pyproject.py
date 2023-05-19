@@ -31,10 +31,10 @@ class PyprojectSolver(Solver):
 
         tools = toml.get("tool", {})
         if not tools:
-            # returning OK here, as it's possible to have project deps
-            # without using a tool like PDM or Poetry
-            # there's no way to tell if PDM was used at this point, so assume
-            msg = f"Can't determine which tool might have authored pyproject.toml for {self.path.parent.name}."
+            # returning Conditional here, as it's possible to have project deps
+            # without using a tool like PDM or Poetry. There's no way to tell
+            # at this point if PDM was used, so indicate this ambiguity
+            msg = f"Can't determine which tool might have authored pyproject.toml"
             return Conditional(result=dependencies, message=msg)
 
         if "poetry" in tools and "pdm" in tools:
@@ -50,7 +50,10 @@ class PyprojectSolver(Solver):
         if "pdm" in tools:
             dependencies.extend(self._get_pdm_dependencies(tools["pdm"]))
 
-        msg = f"Using pyproject for {self.path.parent.name} over preferred tool-specific lockfile (e.g. pdm.lock, poetry.lock)."
+        msg = (
+            "Using pyproject.toml over preferred tool-specific "
+            "lockfile (e.g. pdm.lock, poetry.lock)."
+        )
         return Conditional(result=dependencies, message=msg)
 
     def _get_project_dependencies(self, toml: Mapping[str, Any]) -> Collection[str]:
