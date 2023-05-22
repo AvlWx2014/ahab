@@ -1,6 +1,6 @@
 [project]
 name = "ahab"
-version = "1.0.0-SNAPSHOT"
+version = "1.0.0.dev1"
 description = "Gathers information on dependencies used by your Python projects whether you use requiremens.txt, PDM, Poetry, PIpenv, or just plain pyproject.toml."
 authors = [
     {name = "Ryan Smith", email = "ryan.d.smith.106@gmail.com"},
@@ -16,9 +16,5 @@ license = {text = "MIT"}
 
 [tool.pdm.dev-dependencies]
 dev = [
-    "black>=23.3.0",
-    "flake8>=6.0.0",
-    "mypy>=1.3.0",
-    "bandit>=1.7.5",
-    "isort>=5.12.0",
+    "pre-commit>=3.3.2",
 ]
